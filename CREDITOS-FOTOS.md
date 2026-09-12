@@ -1,0 +1,110 @@
+# Créditos das fotos dos monumentos
+
+Todas as imagens provêm do **Wikimedia Commons**, ao abrigo de licenças livres
+(Creative Commons ou domínio público). A ligação de cada país está em
+`dados-paises.js` (campo `foto`, via `Special:FilePath`).
+
+Para trocar uma foto: substitui o `foto` (e o `fotoCredito`) desse país.
+
+- **Portugal** — Mosteiro dos Jerónimos, Lisboa
+  - Jerónimos Monastery in Belém, Lisbon, 20250604 1342 9260.jpg — Jakub Hałun / CC BY 4.0
+- **Espanha** — Basílica da Sagrada Família, Barcelona
+  - Sagrada Familia 01.jpg — Bernard Gagnon / CC BY-SA 3.0
+- **Andorra** — Casa de la Vall, Andorra-a-Velha
+  - Casa de la Vall, Andorra la Vieja, Andorra, 2013-12-30, DD 01.JPG — Diego Delso / CC BY-SA 3.0
+- **França** — Torre Eiffel, Paris
+  - Eiffel tower from trocadero.jpg — NonOmnisMoriar / CC BY-SA 3.0
+- **Mónaco** — Palácio do Príncipe / Casino de Monte Carlo
+  - Le casino de Monte-Carlo.JPG — Fruitpunchline / CC BY-SA 4.0
+- **Itália** — Coliseu, Roma
+  - Colosseum in Rome-April 2007-1- copie 2B.jpg — Diliff / CC BY-SA 2.5
+- **San Marino** — As Três Torres de San Marino (Guaita)
+  - Fortress of Guaita 2013-09-19.jpg — Max_Ryazanov / CC BY-SA 3.0
+- **Vaticano** — Basílica de São Pedro
+  - Basilica di San Pietro in Vaticano September 2015-1a.jpg — Alvesgaspar / CC BY-SA 4.0
+- **Malta** — Templos megalíticos de Ġgantija, Gozo
+  - Templo de Ġgantija, isla de Gozo, Malta, 2021-08-23, DD 35.jpg — Diego Delso / CC BY-SA 4.0
+- **Reino Unido** — Palácio de Westminster e o Big Ben, Londres
+  - Big Ben at sunset - 2014-10-27 17-30.jpg — Colin / CC BY-SA 4.0
+- **Irlanda** — Penhascos de Moher, Condado de Clare
+  - Ireland Cliffs of Moher BW 2025-09-11 14-27-51.jpg — Berthold Werner / CC BY-SA 4.0
+- **Bélgica** — Manneken Pis, Bruxelas
+  - Manneken Pis, Brussels (DSCF4467).jpg — Trougnouf / CC BY 4.0
+- **Países Baixos** — Os moinhos de Kinderdijk
+  - The windmills of Kinderdijk.JPG — Tarod / CC BY-SA 3.0 nl
+- **Luxemburgo** — Cidade velha e fortificações do Bock, Luxemburgo
+  - Luxembourg (LU), Grund und Église Saint-Jean -- 2023 -- 8132.jpg — Dietmar Rabich / CC BY-SA 4.0
+- **Alemanha** — Portão de Brandemburgo, Berlim
+  - Brandenburg Gate Quadriga at Night.jpg — א (Aleph)
+
+Creator: Johann Gottfried Schadow / CC BY-SA 2.5
+- **Suíça** — Monte Cervino (Matterhorn), Zermatt
+  - CH.VS.Zermatt 2021-10-17 Matterhorn 8726.jpg — Roy Egloff / CC BY-SA 4.0
+- **Listenstaine** — Castelo de Vaduz
+  - Liechtenstein asv2022-10 img22 Vaduz Schloss.jpg — A.Savin / FAL
+- **Áustria** — Palácio de Schönbrunn, Viena
+  - Schoenbrunn Palace as seen from Neptune Fountain, September 2016.jpg — Martin Falbisoner / CC BY-SA 4.0
+- **Dinamarca** — A Pequena Sereia, Copenhaga
+  - The Little Mermaid home.jpg — klndonnelly / CC BY 2.0
+- **Noruega** — O fiorde de Geiranger
+  - Geirangerfjord from Ørnesvingen, 2013 June.jpg — Ximonic (Simo Räsänen) / CC BY-SA 3.0
+- **Suécia** — Câmara Municipal de Estocolmo, onde é servido o banquete Nobel
+  - Stockholms stadshus February 2026 02.jpg — ArildV / CC BY-SA 4.0
+- **Islândia** — Cascata de Gullfoss
+  - Gullfoss, Suðurland, Islandia, 2014-08-16, DD 119.JPG — Diego Delso / CC BY-SA 4.0
+- **Finlândia** — Fortaleza marítima de Suomenlinna, Helsínquia
+  - Suomenlinna.jpg — Michal Pise, Michal.Pise / CC BY 2.0
+- **Estónia** — Cidade Velha de Taline
+  - Tallinn-panorama-2011.jpg — acediscovery / CC BY 4.0
+- **Letónia** — Centro histórico de Riga
+  - House of Blackheads and St. Peter's Church Tower, Riga, Latvia - Diliff.jpg — Diliff / CC BY-SA 3.0
+- **Lituânia** — Colina das Cruzes, Šiauliai
+  - Hill of Crosses 1, Siauliai, Lithuania.JPG — Diliff / CC BY-SA 3.0
+- **Polónia** — Castelo Real de Wawel, Cracóvia
+  - Wawel Castle view from south. Krakow, Poland.jpg — Ввласенко / CC BY-SA 3.0
+- **Chéquia** — Castelo de Praga e a Ponte Carlos
+  - Prague 07-2016 View from Petrinska Tower img2.jpg — A.Savin / FAL
+- **Eslováquia** — Castelo de Spiš
+  - Spissky hrad west.jpg — Ingo Mehling / CC BY-SA 4.0
+- **Hungria** — Parlamento de Budapeste
+  - Budapest Parliament 4604.JPG — Dirk Beyer / CC BY-SA 3.0
+- **Eslovénia** — Lago de Bled e a sua ilhota com igreja
+  - Bled Island in Lake Bled, Slovenia, 20240504 0901 8297.jpg — Jakub Hałun / CC BY 4.0
+- **Croácia** — Muralhas da cidade velha de Dubrovnik
+  - City walls of Dubrovnik 05.jpg — Bernard Gagnon / CC BY-SA 4.0
+- **Bósnia e Herzegovina** — Ponte Velha (Stari Most), Mostar
+  - Mostar Old Town Panorama 2007.jpg — Ramirez / CC BY-SA 4.0
+- **Sérvia** — Fortaleza de Belgrado (Kalemegdan)
+  - Belgrade Fortress Kalemegdan-9878.NEF.jpg — Zcvetkovic / CC BY-SA 4.0
+- **Montenegro** — Baía de Kotor e a sua cidade fortificada
+  - 20090719 Crkva Gospa od Zdravlja Kotor Bay Montenegro.jpg — User:Ggia / CC BY-SA 3.0
+- **Kosovo** — Mosteiro de Visoki Dečani
+  - Visoki Dečani monastery, 2008.jpg — a.dombrowski / CC BY-SA 2.0
+- **Albânia** — Cidade-museu de Gjirokastër
+  - Gjirokastër Old Town (2).jpg — Radosław Botev / CC BY 3.0 pl
+- **Macedónia do Norte** — Lago de Ohrid e a igreja de São João de Kaneo
+  - Church of St. John at Kaneo 6.jpg — kallerna / CC BY-SA 4.0
+- **Grécia** — Acrópole de Atenas e o Partenón
+  - Attica 06-13 Athens 50 View from Philopappos - Acropolis Hill.jpg — A.Savin / CC BY-SA 3.0
+- **Bulgária** — Mosteiro de Rila
+  - Rila Monastery, August 2013.jpg — Raggatt2000 / CC BY-SA 3.0
+- **Roménia** — Castelo de Bran, na Transilvânia
+  - Bran Castle, Transylvania (2023).jpg — Paul Colin Hennig firstdorsal.eu / CC BY-SA 4.0
+- **Moldávia** — Mosteiro rupestre de Orheiul Vechi
+  - OrheiulVechi,CaveMonastery.jpg — Bertramz / CC BY-SA 3.0
+- **Turquia** — Santa Sofia (Hagia Sophia), Istambul
+  - Hagia Sophia Mars 2013.jpg — Arild Vågen / CC BY-SA 3.0
+- **Chipre** — Sítio arqueológico de Kourion
+  - Kourion archaeological site Cyprus (1).jpg — Radosław Botev / CC BY 3.0 pl
+- **Ucrânia** — Catedral de Santa Sofia, Kiev
+  - 80-391-9014 Kyiv Sofia 2 RB 24.jpg — Rbrechko / CC BY-SA 4.0
+- **Bielorrússia** — Castelo de Mir
+  - Комплекс Мирского замка.JPG — Вадзім Новикаў / CC BY-SA 3.0
+- **Rússia** — Praça Vermelha e a Catedral de São Basílio, Moscovo
+  - Moscow. Saint Basil's Cathedral P4162276 2750.jpg — Alexxx1979 / CC BY-SA 4.0
+- **Geórgia** — Cidade rupestre de Uplistsikhe
+  - Ancient cave in Uplistsikhe 20230920.jpg — Supanut Arunoprayote / CC BY 4.0
+- **Arménia** — Mosteiro de Guegard
+  - Monasterio de Geghard, Armenia, 2016-10-02, DD 63.jpg — Diego Delso / CC BY-SA 4.0
+- **Azerbaijão** — Cidade Velha de Baku e a Torre da Donzela
+  - Baku, Azerbaiyán, 2016-09-26, DD 211.jpg — Diego Delso / CC BY-SA 4.0

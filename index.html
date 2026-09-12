@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<title>A Europa, País a País</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --azulejo:#2C5F7C;
+    --azulejo-light:#DCE8ED;
+    --paper:#FAF7F0;
+    --vinho:#6B1E2B;
+    --ouro:#C9932E;
+    --ink:#1F2421;
+    --verde:#2E5339;
+
+    /* preenchido por JS a partir de CONFIG */
+    --cols:2;
+    --rows:3;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:#E9E4D8;
+    font-family:'Work Sans',sans-serif;
+    color:var(--ink);
+  }
+
+  /* ===================== FOLHA A4 ===================== */
+  .folha{
+    width:210mm;
+    height:297mm;
+    background:var(--paper);
+    position:relative;
+    margin:0 auto 22px auto;
+    box-shadow:0 4px 24px rgba(0,0,0,0.15);
+    padding:14mm 14mm 12mm 14mm;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* ===================== CAPA ===================== */
+  .capa{
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:var(--azulejo);
+    color:var(--paper);
+  }
+  .capa .selo-grande{
+    width:132px;height:132px;
+    border:3px solid var(--ouro);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:52px;margin-bottom:26px;
+  }
+  .capa h1{
+    font-family:'Fraunces',serif;font-weight:800;
+    font-size:46px;margin:0 0 10px 0;line-height:1.08;
+  }
+  .capa h2{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:19px;margin:0 0 40px 0;opacity:0.9;
+  }
+  .capa .subtitulo{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    letter-spacing:2px;text-transform:uppercase;opacity:0.75;
+  }
+  .capa .colecao-linha{
+    margin-top:56px;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;opacity:0.6;
+  }
+
+  /* ===================== SECÇÕES DE ABERTURA ===================== */
+  h2.titulo-secao{
+    font-family:'Fraunces',serif;font-size:26px;color:var(--azulejo);
+    border-bottom:3px solid var(--azulejo);padding-bottom:10px;margin:0 0 18px 0;
+  }
+  .intro-texto{font-size:14px;line-height:1.6;margin-bottom:18px;}
+  .intro-texto b{color:var(--azulejo);}
+
+  .bloco-explicado{
+    display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;
+    padding:10px 12px;background:var(--azulejo-light);border-radius:6px;
+  }
+  .bloco-explicado .num{
+    font-family:'Fraunces',serif;font-weight:700;font-size:20px;
+    color:var(--azulejo);min-width:26px;
+  }
+  .bloco-explicado .txt b{display:block;font-size:13px;margin-bottom:2px;}
+  .bloco-explicado .txt span{font-size:12px;color:#444;line-height:1.4;}
+  .bloco-explicado .txt span b{display:inline;font-size:inherit;margin:0;color:var(--azulejo);}
+
+  .notas-redacao{
+    margin-top:auto;padding:12px 14px;background:#f7f2e8;
+    border:1px solid #e2ddd0;border-radius:6px;
+  }
+  .notas-redacao h3{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.2px;
+    text-transform:uppercase;color:var(--vinho);margin:0 0 8px 0;
+  }
+  .notas-redacao p,.notas-redacao li{font-size:11px;line-height:1.45;color:#463e33;}
+  .notas-redacao ul{margin:6px 0 0 16px;padding:0;}
+  .notas-redacao li{margin-bottom:5px;}
+
+  /* ===== mapa de abertura ===== */
+  .mapa-abertura{
+    background:var(--azulejo-light);border:1px solid var(--azulejo);
+    border-radius:8px;padding:8px 10px;
+  }
+  .mapa-abertura img{width:100%;height:auto;display:block;}
+  .mapa-legenda{
+    display:flex;gap:18px;flex-wrap:wrap;font-size:11px;margin-top:8px;
+    padding-top:8px;border-top:1px dashed #9db6c2;
+  }
+  .mapa-legenda .chip{display:flex;align-items:center;gap:7px;}
+  .mapa-legenda .sw{width:18px;height:12px;border-radius:2px;border:1px solid #0002;}
+
+  .mapa-factos{
+    display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;
+  }
+  .mapa-factos .facto{
+    background:#fff;border:1px solid #e2ddd0;border-radius:6px;
+    padding:7px 11px;font-size:11.5px;flex:1 1 30%;
+  }
+  .mapa-factos .facto b{
+    font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:0.8px;
+    text-transform:uppercase;color:var(--azulejo);display:block;margin-bottom:2px;
+  }
+  .mapa-factos .facto span i{font-style:normal;color:#6a6357;}
+
+  /* ===== índice ===== */
+  .indice-lista{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:3px 18px;margin-top:4px;
+  }
+  .indice-item{
+    display:flex;align-items:center;gap:7px;font-size:12px;
+    padding:4px 0;border-bottom:1px dotted #cfc7b3;
+  }
+  .indice-item .n{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+    color:var(--vinho);min-width:20px;
+  }
+  .indice-item img{width:20px;height:15px;object-fit:cover;border:0.5px solid #0002;border-radius:1.5px;flex-shrink:0;}
+  .indice-item span.nome{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ===================== PÁGINAS DE CARTÕES ===================== */
+  .folha-cartoes{padding:12mm 12mm 10mm 12mm;}
+  .cab-cartoes{
+    display:flex;align-items:baseline;justify-content:space-between;
+    border-bottom:2px solid var(--azulejo);padding-bottom:6px;margin-bottom:6mm;
+    flex-shrink:0;
+  }
+  .cab-cartoes .titulo{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;
+    text-transform:uppercase;color:var(--azulejo);
+  }
+  .cab-cartoes .folio{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--vinho);
+  }
+
+  .grelha{
+    flex:1;display:grid;
+    grid-template-columns:repeat(var(--cols),1fr);
+    grid-template-rows:repeat(var(--rows),1fr);
+    gap:5mm;
+    min-height:0;
+  }
+
+  .cartao{
+    border:1px solid #ddd4c0;border-radius:7px;background:#fff;
+    display:flex;flex-direction:column;
+    overflow:hidden;position:relative;
+  }
+
+  /* foto do monumento — mesma proporção para todos (recorta, nunca distorce) */
+  .cartao .foto{
+    width:100%;aspect-ratio:3 / 1.5;object-fit:cover;display:block;
+    background:#e7e1d3;flex-shrink:0;
+    border-bottom:1px solid #ddd4c0;
+  }
+  .cartao .foto-vazia{
+    display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono',monospace;font-size:9px;color:#a99;
+  }
+  .cartao .corpo{
+    padding:8px 10px 8px 10px;
+    display:flex;flex-direction:column;flex:1;min-height:0;
+  }
+
+  .cartao .topo{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:8px;
+  }
+  .cartao .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1.3px;
+    text-transform:uppercase;color:var(--azulejo);padding-top:3px;
+  }
+  .cartao .bandeira{
+    width:50px;height:37px;object-fit:cover;flex-shrink:0;
+    border:1px solid #0003;border-radius:2px;background:#f0ece1;
+  }
+  .cartao h3{
+    font-family:'Fraunces',serif;font-size:16.5px;line-height:1.05;
+    margin:2px 0 0 0;color:var(--ink);
+  }
+  .cartao .endonimo{
+    font-family:'Fraunces',serif;font-style:italic;font-size:10.5px;
+    color:#6a6357;margin:1px 0 5px 0;line-height:1.12;
+  }
+
+  .cartao .ficha{
+    display:grid;grid-template-columns:auto 1fr;gap:1.5px 8px;
+    font-family:'IBM Plex Mono',monospace;font-size:8.8px;line-height:1.25;
+  }
+  .cartao .ficha dt{
+    color:var(--azulejo);text-transform:uppercase;letter-spacing:0.3px;
+    white-space:nowrap;
+  }
+  .cartao .ficha dd{margin:0;}
+  .cartao .ficha dd b{color:var(--ink);font-weight:600;}
+  .cartao .ficha dt.dt-cidades{white-space:normal;}
+  .cartao .ficha .rank{color:var(--vinho);}
+  .cartao .ficha .eu{font-size:10.5px;vertical-align:-1px;white-space:nowrap;}
+
+  .cartao .monumento{
+    margin-top:5px;font-size:9.3px;line-height:1.28;
+  }
+  .cartao .monumento .lbl{
+    font-family:'IBM Plex Mono',monospace;font-size:7.5px;letter-spacing:0.3px;
+    text-transform:uppercase;color:var(--azulejo);display:block;margin-bottom:1px;
+  }
+
+  .cartao .curiosidade{
+    margin-top:5px;font-size:8.8px;line-height:1.33;color:#4b4438;
+    font-style:italic;
+    border-left:2px solid var(--ouro);padding-left:6px;
+  }
+
+  .cartao .visitei{
+    margin-top:auto;padding-top:6px;
+  }
+  .cartao .visitei .lbl{
+    font-family:'IBM Plex Mono',monospace;font-size:7.5px;letter-spacing:0.3px;
+    text-transform:uppercase;color:var(--vinho);
+  }
+  .cartao .visitei .linha{
+    border-bottom:1px dotted #b7ae98;height:12px;margin-top:5px;
+  }
+  .cartao .visitei .linha:nth-of-type(n+4){display:none;}
+
+  /* compactação automática quando há muitos cartões por folha */
+  .grelha.densa .cartao .foto{aspect-ratio:3 / 1.15;}
+  .grelha.densa .cartao .corpo{padding:6px 8px;}
+  .grelha.densa .cartao h3{font-size:14px;}
+  .grelha.densa .cartao .endonimo{font-size:9px;margin-bottom:4px;}
+  .grelha.densa .cartao .bandeira{width:42px;height:31px;}
+  .grelha.densa .cartao .ficha{font-size:8px;}
+  .grelha.densa .cartao .monumento{font-size:8.5px;margin-top:4px;}
+  .grelha.densa .cartao .curiosidade{font-size:8px;margin-top:4px;}
+  .grelha.densa .cartao .visitei .linha:nth-of-type(n+3){display:none;}
+
+  .grelha.muito-densa .cartao .foto{display:none;}
+  .grelha.muito-densa .cartao .curiosidade{display:none;}
+
+  .cred-lista{
+    columns:2;column-gap:16px;font-size:9px;line-height:1.4;color:#5a5145;
+  }
+  .cred-item{
+    break-inside:avoid;margin-bottom:5px;padding-bottom:4px;
+    border-bottom:1px dotted #ddd4c0;
+  }
+  .cred-item b{color:var(--ink);font-weight:600;}
+
+  /* folha em branco (verso da capa, para impressão frente e verso) */
+  .folha-branca{background:var(--paper);}
+
+  /* ===================== IMPRESSÃO ===================== */
+  @page{size:A4;margin:0;}
+  @media print{
+    body{background:#fff;}
+    .folha{
+      margin:0;box-shadow:none;
+      page-break-after:always;break-after:page;
+    }
+    .folha:last-child{page-break-after:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== 1 · CAPA ===================== -->
+<div class="folha capa">
+  <div class="subtitulo">Uma coleção para conhecer</div>
+  <div class="selo-grande">🗺️</div>
+  <h1>A Europa,<br>País a País</h1>
+  <h2><span class="n-paises">50</span> países num cartão cada um — para ler, colecionar e visitar</h2>
+  <div class="colecao-linha">Feito em família · sem fins comerciais</div>
+</div>
+
+<!-- ===================== VERSO DA CAPA (em branco) ===================== -->
+<div class="folha folha-branca"></div>
+
+<!-- ===================== 2 · COMO LER ===================== -->
+<div class="folha">
+  <h2 class="titulo-secao">📖 Como ler este livro</h2>
+  <p class="intro-texto">Cada folha tem um conjunto de <b>cartões de país</b>, todos com a <b>mesma estrutura</b>. Os países aparecem por proximidade a Portugal — começa aqui ao lado e vai-se afastando pela Europa fora.</p>
+
+  <div class="bloco-explicado">
+    <div class="num">1</div>
+    <div class="txt"><b>Foto do monumento</b><span>Uma imagem do marco mais conhecido do país — o primeiro que aparece num postal.</span></div>
+  </div>
+  <div class="bloco-explicado">
+    <div class="num">2</div>
+    <div class="txt"><b>Nome e bandeira</b><span>O nome em português, o nome na língua do país (o "endónimo") e a bandeira.</span></div>
+  </div>
+  <div class="bloco-explicado">
+    <div class="num">3</div>
+    <div class="txt"><b>Ficha</b><span>As <b>cidades principais</b> — a capital aparece primeiro e a <b>negrito</b> —, a população e a área (cada uma com a sua posição, ou <i>ranking</i>, entre os <span class="n-paises">50</span> países do livro), a moeda, o idioma oficial e a forma de governo. O emoji 🇪🇺 marca os membros da União Europeia.</span></div>
+  </div>
+  <div class="bloco-explicado">
+    <div class="num">4</div>
+    <div class="txt"><b>Curiosidade</b><span>Um facto para guardar e contar aos amigos.</span></div>
+  </div>
+  <div class="bloco-explicado">
+    <div class="num">5</div>
+    <div class="txt"><b>Cidades que já visitei</b><span>Uma linha em branco para escreres à mão as cidades desse país onde já puseste os pés.</span></div>
+  </div>
+
+  <div class="notas-redacao">
+    <h3>Notas de redação</h3>
+    <p>Este projeto nasceu com um propósito familiar e pedagógico: partilhar conhecimento de forma acessível, bonita e próxima do leitor. O texto foi elaborado com recurso a IA e, embora revisto com atenção, não deve ser tratado como fonte definitiva, académica ou técnica.</p>
+    <ul>
+      <li>Os números (população, área) são estimativas recentes e arredondadas, para dar ordens de grandeza — não valores oficiais ao habitante.</li>
+      <li>Este material não tem intenção comercial e não deve ser vendido.</li>
+      <li>Bandeiras: conjunto <b>flag-icons</b> (lipis, licença MIT / domínio público). Mapa da Europa: "Blank map of Europe", por <i>maix</i> (Wikimedia Commons, CC BY-SA 3.0), com cores adaptadas.</li>
+      <li>Fotos dos monumentos: <b>Wikimedia Commons</b>, ao abrigo de licenças livres (Creative Commons / domínio público). A lista completa de autores e licenças está no ficheiro <i>CREDITOS-FOTOS.md</i> e no campo <i>fotoCredito</i> de cada país.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== 3 · MAPA ===================== -->
+<div class="folha">
+  <h2 class="titulo-secao">🗺️ Os países deste livro</h2>
+  <div class="mapa-abertura">
+    <img src="mapas/europa.svg" alt="Mapa da Europa com os países do livro destacados">
+    <div class="mapa-legenda">
+      <div class="chip"><span class="sw" style="background:#003399"></span> Países da União Europeia</div>
+      <div class="chip"><span class="sw" style="background:#2C5F7C"></span> Outros países do livro</div>
+      <div class="chip"><span class="sw" style="background:#E7E1D3"></span> Restantes territórios</div>
+    </div>
+  </div>
+  <div class="mapa-factos" id="mapa-factos"></div>
+</div>
+
+<!-- ===================== 4 · ÍNDICE ===================== -->
+<div class="folha">
+  <h2 class="titulo-secao">📑 Índice</h2>
+  <p class="intro-texto">Pela ordem em que aparecem — de Portugal para fora, região a região.</p>
+  <div class="indice-lista" id="indice"></div>
+</div>
+
+<!-- ===================== CARTÕES (gerados por JS) ===================== -->
+<div id="saida-cartoes"></div>
+
+<script src="dados-paises.js"></script>
+<script>
+/* =========================================================================
+   CONFIGURAÇÃO
+   ------------------------------------------------------------------------- */
+const CONFIG = {
+  colunas: 2,          // cartões por linha
+  linhas: 2,           // linhas de cartões por folha  (2×2 = 4 por folha, com foto)
+  mostrarFoto: true,   // foto do monumento em cada cartão
+  // Base das bandeiras (SVG 4x3). Alternativa oficial: https://flagicons.lipis.dev/flags/4x3/
+  bandeirasBase: 'https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.5.0/flags/4x3/',
+  tituloFolha: 'A Europa, País a País'
+};
+/* ===================================================================== */
+
+const PAISES = window.PAISES || [];
+
+/* --- rankings calculados a partir dos dados --- */
+function ranks(campo){
+  const ord = [...PAISES].sort((a,b)=> b[campo]-a[campo]);
+  const m = new Map();
+  ord.forEach((p,i)=> m.set(p, i+1));
+  return m;
+}
+const rankPop = ranks('populacao');
+const rankArea = ranks('area');
+
+/* --- formatação de números (pt-PT) --- */
+function grupos(n){
+  return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+function fmtPop(n){
+  if(n >= 1e6){
+    const v = n/1e6;
+    const s = (v>=10 ? v.toFixed(1) : v.toFixed(2)).replace('.', ',').replace(/,?0+$/,'');
+    return s + ' milhões';
+  }
+  if(n >= 1000) return grupos(n) + ' hab.';
+  return n + ' hab.';
+}
+function fmtArea(n){
+  if(n < 10) return n.toString().replace('.', ',') + ' km²';
+  return grupos(n) + ' km²';
+}
+const ordinal = n => n + '.º';
+
+/* lista de cidades: a capital (primeira) a negrito */
+function cidadesHtml(p){
+  const cs = (p.cidades && p.cidades.length) ? p.cidades : (p.capital ? [p.capital] : []);
+  if(!cs.length) return '—';
+  return cs.map((c,i)=> i===0 ? `<b>${c}</b>` : c).join(', ');
+}
+
+/* --- construção de um cartão --- */
+function cartao(p, indice){
+  const el = document.createElement('article');
+  el.className = 'cartao';
+
+  const eu = p.ue ? ' <span class="eu">\u{1F1EA}\u{1F1FA}</span>' : '';
+  const gov = (p.governo || '') + eu;
+
+  const foto = (CONFIG.mostrarFoto && p.foto)
+    ? `<img class="foto" loading="lazy" src="${p.foto}" alt="${p.monumento || p.nome}"
+           onerror="this.className='foto foto-vazia';this.removeAttribute('src');this.textContent='(sem imagem)'">`
+    : '';
+
+  el.innerHTML = `
+    ${foto}
+    <div class="corpo">
+      <div class="topo">
+        <div class="eyebrow">País n.º ${String(indice+1).padStart(2,'0')} / ${PAISES.length}</div>
+        <img class="bandeira" loading="lazy"
+             src="${CONFIG.bandeirasBase}${p.iso}.svg"
+             alt="Bandeira: ${p.nome}"
+             onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'bandeira',textContent:'${p.iso.toUpperCase()}',style:'display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:11px;color:#555'}))">
+      </div>
+      <h3>${p.nome}</h3>
+      <div class="endonimo">${(p.endonimo && p.endonimo !== p.nome) ? p.endonimo : '&nbsp;'}</div>
+      <dl class="ficha">
+        <dt class="dt-cidades">Cidades principais</dt><dd>${cidadesHtml(p)}</dd>
+        <dt>População</dt><dd>${fmtPop(p.populacao)} <span class="rank">· ${ordinal(rankPop.get(p))} na Europa</span></dd>
+        <dt>Área</dt><dd>${fmtArea(p.area)} <span class="rank">· ${ordinal(rankArea.get(p))} na Europa</span></dd>
+        <dt>Moeda</dt><dd>${p.moeda || '—'}</dd>
+        <dt>Idioma</dt><dd>${p.idioma || '—'}</dd>
+        <dt>Governo</dt><dd>${gov || '—'}</dd>
+      </dl>
+      <div class="monumento">
+        <span class="lbl">🏛️ Monumento</span>${p.monumento || '—'}
+      </div>
+      ${p.curiosidade ? `<div class="curiosidade">${p.curiosidade}</div>` : ''}
+      <div class="visitei">
+        <span class="lbl">✍️ Cidades que já visitei</span>
+        <div class="linha"></div>
+        <div class="linha"></div>
+        <div class="linha"></div>
+        <div class="linha"></div>
+      </div>
+    </div>
+  `;
+  return el;
+}
+
+/* --- paginação: N cartões fixos por folha --- */
+function render(){
+  document.documentElement.style.setProperty('--cols', CONFIG.colunas);
+  document.documentElement.style.setProperty('--rows', CONFIG.linhas);
+
+  const porFolha = CONFIG.colunas * CONFIG.linhas;
+  const saida = document.getElementById('saida-cartoes');
+  saida.innerHTML = '';
+
+  const totalFolhas = Math.ceil(PAISES.length / porFolha);
+
+  for(let f = 0; f < totalFolhas; f++){
+    const folha = document.createElement('div');
+    folha.className = 'folha folha-cartoes';
+
+    const cab = document.createElement('div');
+    cab.className = 'cab-cartoes';
+    cab.innerHTML = `<span class="titulo">${CONFIG.tituloFolha}</span>
+                     <span class="folio">folha ${f+1} / ${totalFolhas}</span>`;
+    folha.appendChild(cab);
+
+    const grelha = document.createElement('div');
+    grelha.className = 'grelha';
+    if(porFolha >= 6) grelha.classList.add('densa');
+    if(porFolha >= 9) grelha.classList.add('muito-densa');
+
+    for(let i = f*porFolha; i < Math.min((f+1)*porFolha, PAISES.length); i++){
+      grelha.appendChild(cartao(PAISES[i], i));
+    }
+    folha.appendChild(grelha);
+    saida.appendChild(folha);
+  }
+}
+
+/* --- factos do mapa (superlativos calculados dos dados) --- */
+function renderFactos(){
+  const alvo = document.getElementById('mapa-factos');
+  if(!alvo) return;
+  const porArea = [...PAISES].sort((a,b)=> b.area-a.area);
+  const porPop  = [...PAISES].sort((a,b)=> b.populacao-a.populacao);
+  const naUE = PAISES.filter(p=>p.ue).length;
+  const euro = PAISES.filter(p=>/€/.test(p.moeda)).length;
+  const factos = [
+    ['Maior em área', `${porArea[0].nome} <i>(${fmtArea(porArea[0].area)})</i>`],
+    ['Mais pequeno', `${porArea[porArea.length-1].nome} <i>(${fmtArea(porArea[porArea.length-1].area)})</i>`],
+    ['Mais habitantes', `${porPop[0].nome} <i>(${fmtPop(porPop[0].populacao)})</i>`],
+    ['Menos habitantes', `${porPop[porPop.length-1].nome} <i>(${fmtPop(porPop[porPop.length-1].populacao)})</i>`],
+    ['Na União Europeia', `${naUE} dos ${PAISES.length} países 🇪🇺`],
+    ['Usam o euro', `${euro} países`]
+  ];
+  alvo.innerHTML = factos.map(([t,v])=>`<div class="facto"><b>${t}</b><span>${v}</span></div>`).join('');
+}
+
+/* --- índice --- */
+function renderIndice(){
+  const alvo = document.getElementById('indice');
+  PAISES.forEach((p,i)=>{
+    const item = document.createElement('div');
+    item.className = 'indice-item';
+    item.innerHTML = `<span class="n">${String(i+1).padStart(2,'0')}</span>
+      <img loading="lazy" src="${CONFIG.bandeirasBase}${p.iso}.svg" alt=""
+           onerror="this.style.visibility='hidden'">
+      <span class="nome">${p.nome}</span>`;
+    alvo.appendChild(item);
+  });
+}
+
+/* --- página de créditos das fotos --- */
+function renderCreditos(){
+  const com = PAISES.filter(p=>p.fotoCredito);
+  if(!com.length) return;
+  const linhas = com.map(p=>{
+    const c = p.fotoCredito.replace(/ · Wikimedia Commons$/,'');
+    return `<div class="cred-item"><b>${p.nome}</b> — ${c}</div>`;
+  }).join('');
+  const folha = document.createElement('div');
+  folha.className = 'folha';
+  folha.innerHTML = `
+    <h2 class="titulo-secao">📷 Créditos das fotos</h2>
+    <p class="intro-texto">Todas as fotos dos monumentos vêm do <b>Wikimedia Commons</b>,
+    ao abrigo de licenças livres (Creative Commons ou domínio público).
+    Indicam-se o ficheiro de origem, o autor e a licença.</p>
+    <div class="cred-lista">${linhas}</div>`;
+  document.getElementById('saida-cartoes').after(folha);
+}
+
+/* --- substitui &lt;span class="n-paises"&gt; pelo total --- */
+function preencherTotais(){
+  document.querySelectorAll('.n-paises').forEach(el=> el.textContent = PAISES.length);
+}
+
+if(!PAISES.length){
+  document.getElementById('saida-cartoes').innerHTML =
+    '<div class="folha"><h2 class="titulo-secao">Sem dados</h2>' +
+    '<p class="intro-texto">O ficheiro <b>dados-paises.js</b> não foi carregado.</p></div>';
+} else {
+  preencherTotais();
+  renderFactos();
+  renderIndice();
+  render();
+  renderCreditos();
+}
+</script>
+</body>
+</html>
