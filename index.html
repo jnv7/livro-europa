@@ -20,6 +20,7 @@
     --rows:3;
   }
   *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   html,body{margin:0;padding:0;}
   body{
     background:#E9E4D8;
@@ -146,8 +147,11 @@
   }
   .indice-item{
     display:flex;align-items:center;gap:7px;font-size:12px;
-    padding:4px 0;border-bottom:1px dotted #cfc7b3;
+    padding:4px 3px;border-bottom:1px dotted #cfc7b3;
+    text-decoration:none;color:inherit;border-radius:4px;
+    transition:background .12s;
   }
+  .indice-item:hover{background:var(--azulejo-light);}
   .indice-item .n{
     font-family:'IBM Plex Mono',monospace;font-size:10.5px;
     color:var(--vinho);min-width:20px;
@@ -182,6 +186,11 @@
     border:1px solid #ddd4c0;border-radius:7px;background:#fff;
     display:flex;flex-direction:column;
     overflow:hidden;position:relative;
+  }
+  .cartao:target{animation:chegada 1.1s ease-out;}
+  @keyframes chegada{
+    0%{box-shadow:0 0 0 3px var(--ouro);}
+    100%{box-shadow:0 0 0 3px transparent;}
   }
 
   /* foto do monumento — mesma proporção para todos (recorta, nunca distorce) */
@@ -435,6 +444,7 @@ function cidadesHtml(p){
 function cartao(p, indice){
   const el = document.createElement('article');
   el.className = 'cartao';
+  el.id = 'pais-' + p.iso;
 
   const eu = p.ue ? ' <span class="eu">\u{1F1EA}\u{1F1FA}</span>' : '';
   const gov = (p.governo || '') + eu;
@@ -537,8 +547,9 @@ function renderFactos(){
 function renderIndice(){
   const alvo = document.getElementById('indice');
   PAISES.forEach((p,i)=>{
-    const item = document.createElement('div');
+    const item = document.createElement('a');
     item.className = 'indice-item';
+    item.href = '#pais-' + p.iso;
     item.innerHTML = `<span class="n">${String(i+1).padStart(2,'0')}</span>
       <img loading="lazy" src="${CONFIG.bandeirasBase}${p.iso}.svg" alt=""
            onerror="this.style.visibility='hidden'">
