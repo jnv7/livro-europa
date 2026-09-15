@@ -2,6 +2,7 @@
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A Europa, País a País</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
@@ -303,6 +304,63 @@
       page-break-after:always;break-after:page;
     }
     .folha:last-child{page-break-after:auto;}
+  }
+
+  /* ===================== VISTA TELEMÓVEL (só ecrã, não afeta impressão) =====================
+     As folhas mantêm o formato A4 fixo para impressão; em ecrãs estreitos passam a
+     largura fluida e altura automática, e a grelha de cartões (pensada para caber
+     exatamente numa página A4) passa a uma coluna, sem densificação. */
+  @media screen and (max-width:700px){
+    .folha{
+      width:100%;
+      max-width:100%;
+      height:auto;
+      min-height:0;
+      margin:0 0 16px 0;
+      padding:22px 16px;
+      box-shadow:none;
+      border-bottom:10px solid #ddd6c6;
+      overflow:visible;
+    }
+    .folha-branca{display:none;}
+
+    .capa{padding:48px 20px;}
+    .capa h1{font-size:30px;}
+    .capa h2{font-size:15px;}
+    .capa .selo-grande{width:104px;height:104px;font-size:44px;margin-bottom:20px;}
+
+    .titulo-secao{font-size:22px;}
+
+    .mapa-legenda{gap:10px;}
+    .mapa-factos .facto{flex:1 1 100%;}
+
+    .indice-lista{grid-template-columns:1fr;}
+
+    /* cartões de país */
+    .grelha{grid-template-columns:1fr;grid-template-rows:none;gap:16px;}
+    .cartao .foto{aspect-ratio:16/9;}
+    .cartao .corpo{padding:14px 16px;}
+    .cartao h3{font-size:19px;}
+    .cartao .endonimo{font-size:12px;}
+    .cartao .bandeira{width:56px;height:42px;}
+    .cartao .ficha{font-size:11px;line-height:1.45;}
+    .cartao .monumento{font-size:11px;}
+    .cartao .curiosidade{font-size:11px;}
+
+    /* neutraliza a densificação automática (pensada para caber na A4) */
+    .grelha.densa .cartao .foto,
+    .grelha.muito-densa .cartao .foto{display:block;aspect-ratio:16/9;}
+    .grelha.densa .cartao .corpo{padding:14px 16px;}
+    .grelha.densa .cartao h3{font-size:19px;}
+    .grelha.densa .cartao .endonimo{font-size:12px;margin-bottom:5px;}
+    .grelha.densa .cartao .bandeira{width:56px;height:42px;}
+    .grelha.densa .cartao .ficha{font-size:11px;}
+    .grelha.densa .cartao .monumento{font-size:11px;margin-top:5px;}
+    .grelha.densa .cartao .curiosidade,
+    .grelha.muito-densa .cartao .curiosidade{display:block;font-size:11px;margin-top:5px;}
+    .grelha.densa .cartao .visitei .linha:nth-of-type(n+3){display:block;}
+
+    .cred-lista{columns:1;font-size:12px;}
   }
 </style>
 </head>
